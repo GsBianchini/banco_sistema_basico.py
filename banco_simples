@@ -1,0 +1,121 @@
+menu = input("Insira seu nome: ")
+
+saldo = 1000
+
+limite = 1000
+
+numero_saques = 0
+
+LIMITE_SAQUES = 3
+
+
+
+mensagem_atm = f"""====================== Menu ======================
+
+Seja bem vindo {menu}! 
+
+
+
+"Qual operação deseja efetuar hoje ? "
+
+[s] Sacar
+
+[d] Depositar
+
+[e] Extrato
+
+[q] Sair
+
+        """
+
+print(mensagem_atm)
+
+
+
+while True:
+
+
+
+  opcao = input("Escolha uma opção: ")
+
+
+
+  if opcao == "s":
+
+    valor = float(input("Digite o valor que deseja sacar: "))
+
+
+
+    excedeu_saldo = valor > saldo
+
+    excedeu_limite = valor > limite
+
+    excedeu_saques = numero_saques >= LIMITE_SAQUES
+
+
+
+    if excedeu_saldo:
+
+      print("Operação falha! Você não tem saldo suficiente.")
+
+
+
+    elif excedeu_limite:
+
+      print("Lamentamos, porém você não tem limite para efetuar este saque!")
+
+
+
+    elif excedeu_saques:
+
+      print("Operação falha! Número máximo de saques excedido.")
+
+
+
+    elif valor > 0:
+
+      saldo -= valor
+
+      numero_saques += 1
+
+      print(f"Saque de R${valor:.2f} realizado com sucesso!")
+
+
+
+  elif opcao == "d":
+
+    depositar = float(input("Digite o valor que deseja depositar: "))
+
+    if depositar > 0:
+
+      saldo += depositar
+
+      print(f"Depósito de R${depositar:.2f} realizado com sucesso!")
+
+    else:
+
+      print("Valor inválido!")
+
+
+
+  elif opcao == "e":
+
+    print("===========================EXTRATO===========================")
+
+    print(f"{menu}, seu saldo é de R${saldo:.2f}")
+
+    print(f"Você realizou {numero_saques} saque(s) de um total de {LIMITE_SAQUES} permitido(s).")
+
+
+
+  elif opcao == "q":
+
+    print("Obrigado pela preferência!")
+
+    break
+
+
+
+  else:
+
+    print("Opção inválida! Escolha uma das opções listadas.")
